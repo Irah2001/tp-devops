@@ -1,0 +1,39 @@
+name: Node.js CI
+
+on: [push, pull_request]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Unit Tests
+        run: npm test
+
+      - name: Install Playwright Browsers
+        run: npx playwright install
+
+      - name: Start server in background
+        run: npm run serve &
+
+      - name: Wait for server to be ready
+        run: npx wait-on http://localhost:3000
+
+      - name: End-to-End Tests
+        run: npm run test:e2e

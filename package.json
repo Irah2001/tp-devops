@@ -1,0 +1,28 @@
+{
+  "name": "tp-devops",
+  "version": "1.0.0",
+  "description": "TP DevOps",
+  "main": "main.js",
+  "scripts": {
+    "serve": "node server.js",
+    "build": "echo \"No build step\"",
+    "lint": "eslint .",
+    "test": "jest",
+    "test:e2e": "playwright test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "eslint": "^9.29.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.53.1",
+    "jest": "^30.0.2",
+    "wait-on": "^8.0.3"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "<rootDir>/e2e/"
+    ]
+  }
+}
